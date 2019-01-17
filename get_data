@@ -1,0 +1,14 @@
+import pandas as pd
+import pyodbc
+
+server = 'SERVER_NAME'
+db = 'DATABASE_NAME'
+
+conn = pyodbc.connect('DRIVER={SQL Server};SERVER=' + server + ';DATABASE=' + db + ';Trusted_Connection=yes')
+
+get_query = "SELECT * FROM [Customers]"
+
+df_Customers = pd.read_sql(get_query, conn)
+print(df_Customers)
+
+conn.close()
